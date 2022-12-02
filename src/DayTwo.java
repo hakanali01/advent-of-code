@@ -55,7 +55,7 @@ public class DayTwo {
     }
 
     private static void fillListsFromFile(List<Character> me, List<Character> opponent) throws FileNotFoundException {
-        File input = new File("/home/hakan/IdeaProjects/test-project/src/input.txt");
+        File input = new File("/home/hakan/IdeaProjects/advent-of-code/src/day2_input.txt");
         Scanner reader = new Scanner(input);
         while (reader.hasNextLine()) {
             String line = reader.nextLine();
@@ -65,7 +65,7 @@ public class DayTwo {
     }
 
     private static void fillListsFromFilePartTwo(List<Character> me, List<Character> opponent) throws FileNotFoundException {
-        File input = new File("/home/hakan/IdeaProjects/advent-of-code/src/input.txt");
+        File input = new File("/home/hakan/IdeaProjects/advent-of-code/src/day2_input.txt");
         Scanner reader = new Scanner(input);
         while (reader.hasNextLine()) {
             String line = reader.nextLine();
