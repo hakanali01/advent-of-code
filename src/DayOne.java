@@ -26,7 +26,8 @@ public class DayOne {
         List<Integer> values = map
                 .values()
                 .stream()
-                .sorted(Collections.reverseOrder()).collect(Collectors.toList());
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList());
 
         logger.info("Day one part 1: " + values.get(0));
 
