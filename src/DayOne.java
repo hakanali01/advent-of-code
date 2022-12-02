@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class DayOne {
     public void readInputAndDisplayResult() throws FileNotFoundException {
         Logger logger = Logger.getLogger("Main");
-        File input = new File("/home/hakan/IdeaProjects/advent-of-code/src/resources/day1_input.txt");
+        File input = new File(System.getProperty("user.dir") + "/src/resources/day1_input.txt");
         Scanner reader = new Scanner(input);
         List<Integer> calories = new ArrayList<>();
 
