@@ -115,12 +115,12 @@ public class DayTwo {
 
         fillListsFromFile(me, opponent);
         int result = calculate(me, opponent);
-        logger.info("result part one: " + result);
+        logger.info("Day two part one: " + result);
 
         me.clear();
         opponent.clear();
         fillListsFromFilePartTwo(me, opponent);
         result = calculate(me, opponent);
-        logger.info("result part two: " + result);
+        logger.info("Day 2 part two: " + result);
     }
 }

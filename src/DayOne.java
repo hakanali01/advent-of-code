@@ -26,18 +26,16 @@ public class DayOne {
         List<Integer> values = map
                 .values()
                 .stream()
-                .sorted()
-                .collect(Collectors.toList());
+                .sorted(Collections.reverseOrder()).collect(Collectors.toList());
 
-        logger.info("Result: " + values.get(values.size() - 1));
+        logger.info("Day one part 1: " + values.get(0));
 
         int sum = 0;
-        for (int i = values.size() - 1; i > values.size() -4; i--) {
-            System.out.println(values.get(i));
+        for (int i = 0; i < 3; i++) {
             sum += values.get(i);
         }
 
-        logger.info("Sum of top 3: " + sum);
+        logger.info("Day one part 2: " + sum);
     }
 
     private void calculate(List<Integer> cal, Map<String, Integer> map, int sum, int i) {
