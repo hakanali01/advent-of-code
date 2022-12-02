@@ -4,5 +4,8 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         DayTwo dayTwo = new DayTwo();
         dayTwo.runNumbers();
+
+        DayOne dayOne = new DayOne();
+        dayOne.readInputAndDisplayResult();
     }
 }
