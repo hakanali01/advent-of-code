@@ -7,5 +7,8 @@ public class Main {
 
         DayTwo dayTwo = new DayTwo();
         dayTwo.runNumbers();
+
+        DayThree dayThree = new DayThree();
+        dayThree.theseElvesITellYouFfs();
     }
 }
