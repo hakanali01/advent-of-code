@@ -6,12 +6,13 @@ import java.util.logging.Logger;
 
 public class DayFour {
     public void overlapsMoreLikeUwulaps() throws FileNotFoundException {
-        Logger logger = Logger.getLogger("DayThree");
+        Logger logger = Logger.getLogger("DayFour");
         File input = new File(System.getProperty("user.dir") + "/src/resources/day4_input.txt");
         Scanner reader = new Scanner(input);
 
         int countFullOverlap = 0;
-        int partialOverlap = 0;while (reader.hasNextLine()) {
+        int partialOverlap = 0;
+        while (reader.hasNextLine()) {
             String line = reader.nextLine();
             List<String> pairs = List.of(line.split(","));
             List<String> sections1 = List.of(pairs.get(0).split("-"));
@@ -25,10 +26,8 @@ public class DayFour {
             if ((foo <= fot && sot <= soo) || (foo >= fot && soo <= sot)) {
                 countFullOverlap++;
             }
-            boolean partial = (fot >= foo && fot <= soo) ||
-                    (foo >= fot && foo <= sot) ||
-                    (soo >= fot && soo <= sot) ||
-                    (sot >= foo && sot <= soo);
+            boolean partial = (fot >= foo && fot <= soo) || (foo >= fot && foo <= sot) ||
+                    (soo >= fot && soo <= sot) || (sot >= foo && sot <= soo);
             if (partial) {
                 partialOverlap++;
             }
