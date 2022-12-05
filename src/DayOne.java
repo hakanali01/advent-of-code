@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class DayOne {
     public void readInputAndDisplayResult() throws FileNotFoundException {
-        Logger logger = Logger.getLogger("Main");
+        Logger logger = Logger.getLogger("DayOne");
         File input = new File(System.getProperty("user.dir") + "/src/resources/day1_input.txt");
         Scanner reader = new Scanner(input);
         List<Integer> calories = new ArrayList<>();

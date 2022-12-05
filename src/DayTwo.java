@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class DayTwo {
 
     private static int calculate(List<Character> noU, List<Character> opponent) {
-        Logger logger = Logger.getLogger("Main");
+        Logger logger = Logger.getLogger("DayTwo");
         List<Character> rpsOpponent = List.of(new Character[] {'A', 'B', 'C'});
         List<Character> rpsU = List.of(new Character[] {'X', 'Y', 'Z'});
         int result = 0;
