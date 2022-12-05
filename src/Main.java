@@ -10,5 +10,8 @@ public class Main {
 
         DayThree dayThree = new DayThree();
         dayThree.theseElvesITellYouFfs();
+
+        DayFour dayFour = new DayFour();
+        dayFour.overlapsMoreLikeUwulaps();
     }
 }
