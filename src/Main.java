@@ -1,7 +1,7 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         DayOne dayOne = new DayOne();
         dayOne.readInputAndDisplayResult();
 
@@ -13,5 +13,8 @@ public class Main {
 
         DayFour dayFour = new DayFour();
         dayFour.overlapsMoreLikeUwulaps();
+
+        DayFive dayFive = new DayFive();
+        dayFive.parseCrates();
     }
 }
