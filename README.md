@@ -9,4 +9,6 @@ https://adventofcode.com/2022/day/3<br><br>
 * Day 4: Uwurlap<br>
 https://adventofcode.com/2022/day/4<br><br>
 * Day 5: I like to move it move it.<br>
-https://adventofcode.com/2022/day/5
+https://adventofcode.com/2022/day/5<br><br>
+* Day 6: Scumbag elf gives me broken controller<br>
+https://adventofcode.com/2022/day/6
