@@ -90,8 +90,8 @@ public class DayFive implements Serializable {
             int toIndex = Integer.parseInt(line.get(5));
             List<Character> fromList = SerializationUtils.clone(new ArrayList<>(copyOfInventory.get(fromIndex)));
             List<Character> subList = fromList.subList(fromList.size() - amount, fromList.size());
-            subList.forEach(s -> {copyOfInventory.get(toIndex).add(s);});
-            subList.forEach(s -> {copyOfInventory.get(fromIndex).remove(copyOfInventory.get(fromIndex).size() - 1);});
+            subList.forEach(s -> copyOfInventory.get(toIndex).add(s));
+            subList.forEach(s -> copyOfInventory.get(fromIndex).remove(copyOfInventory.get(fromIndex).size() - 1));
         }
 
         msg.setLength(0);
@@ -101,10 +101,5 @@ public class DayFive implements Serializable {
 
         logger.info("Day 6, Part 2 - Move crates in groups final result: " + msg);
         logger.info("\nRuntime: " + (float) (System.nanoTime() - startTime) / 1000000000);
-    }
-
-    public static void main(String[] args) throws IOException {
-        DayFive dayFive = new DayFive();
-        dayFive.moveItMoveIt();
     }
 }

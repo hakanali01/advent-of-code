@@ -1,13 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class DaySix {
-    private void siftingThroughMessage(int part) throws FileNotFoundException {
+    public void siftingThroughMessage(int part) throws FileNotFoundException {
         long startTime = System.nanoTime();
         Logger logger = Logger.getLogger("DayFive");
         List<Character> in = openFile().chars().mapToObj(e -> (char) e).collect(Collectors.toList());
@@ -30,11 +29,5 @@ public class DaySix {
             inputString = reader.nextLine();
         }
         return inputString;
-    }
-
-    public static void main(String[] args) throws IOException {
-        DaySix daySix = new DaySix();
-        daySix.siftingThroughMessage(4);
-        daySix.siftingThroughMessage(14);
     }
 }

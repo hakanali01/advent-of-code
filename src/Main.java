@@ -16,5 +16,9 @@ public class Main {
 
         DayFive iLikeTo = new DayFive();
         iLikeTo.moveItMoveIt();
+
+        DaySix daySix = new DaySix();
+        daySix.siftingThroughMessage(4);
+        daySix.siftingThroughMessage(14);
     }
 }
