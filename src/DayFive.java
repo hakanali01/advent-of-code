@@ -90,9 +90,7 @@ public class DayFive implements Serializable {
             int toIndex = Integer.parseInt(line.get(5));
             List<Character> fromList = SerializationUtils.clone(new ArrayList<>(copyOfInventory.get(fromIndex)));
             List<Character> subList = fromList.subList(fromList.size() - amount, fromList.size());
-            for (Character c : subList) {
-                copyOfInventory.get(toIndex).add(c);
-            }
+            subList.forEach(s -> {copyOfInventory.get(toIndex).add(s);});
             subList.forEach(s -> {copyOfInventory.get(fromIndex).remove(copyOfInventory.get(fromIndex).size() - 1);});
         }
 
