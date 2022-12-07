@@ -1,12 +1,14 @@
+import org.apache.commons.lang3.SerializationUtils;
+
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
 
-public class DayFive {
+public class DayFive implements Serializable {
 
-    public void parseCrates() throws IOException {
+    public void moveItMoveIt() throws IOException{
         long startTime = System.nanoTime();
         Logger logger = Logger.getLogger("DayFive");
         File input = new File(System.getProperty("user.dir") + "/src/resources/day5_input.txt");
@@ -30,7 +32,7 @@ public class DayFive {
             }
         }
 
-        Map<Integer, List<Character>> inventory = new TreeMap<>();
+        TreeMap<Integer, List<Character>> inventory = new TreeMap<>();
         List<String> lastLine = List.of(lines.get(lastLineIndex).split(" "));
         for (int i = 1; i < lastLine.size(); i = i + 3) {
             inventory.put(Integer.parseInt(lastLine.get(i)), new ArrayList<>());
@@ -60,88 +62,51 @@ public class DayFive {
             Collections.reverse(entry.getValue());
         }
 
-        String logging = "";
-        String finalInventory = "";
-        for (Map.Entry<Integer, List<Character>> entry : inventory.entrySet()) {
-            finalInventory += "\t" + entry.getKey() + ": " + entry.getValue() + "\n";
-        }
-
-        String log = "Initial inventory: {\n" + finalInventory + "}\n\n";
-        logging += log;
-
-        logger.info("Inventory: " + inventory);
-
-        Map<Integer, List<Character>> copyOfInventory = new TreeMap<>(inventory);
+        Map<Integer, List<Character>> copyOfInventory = SerializationUtils.clone(inventory);
 
         // part 1
-//        for (int i = lastLineIndex + 2; i < lines.size(); i++) {
-//            List<String> line = List.of(lines.get(i).split(" "));
-//            int amount = Integer.parseInt(line.get(1));
-//            int fromIndex = Integer.parseInt(line.get(3));
-//            int toIndex = Integer.parseInt(line.get(5));
-//            for (int  j = 0; j < amount; j++) {
-//                System.out.println(line + " - " + copyOfInventory);
-//                copyOfInventory.get(toIndex).add(copyOfInventory.get(fromIndex).get(copyOfInventory.get(fromIndex).size() - 1));
-//                copyOfInventory.get(fromIndex).remove(copyOfInventory.get(fromIndex).size() - 1);
-//            }
-//        }
-
-        // part 2
-        int failCount = 0;
         for (int i = lastLineIndex + 2; i < lines.size(); i++) {
             List<String> line = List.of(lines.get(i).split(" "));
             int amount = Integer.parseInt(line.get(1));
             int fromIndex = Integer.parseInt(line.get(3));
             int toIndex = Integer.parseInt(line.get(5));
-            List<Character> fromList = new ArrayList<>(copyOfInventory.get(fromIndex));
+            for (int  j = 0; j < amount; j++) {
+                inventory.get(toIndex).add(inventory.get(fromIndex).get(inventory.get(fromIndex).size() - 1));
+                inventory.get(fromIndex).remove(inventory.get(fromIndex).size() - 1);
+            }
+        }
 
-            log = line + " - FROM " + fromIndex + ": " + copyOfInventory.get(fromIndex) + " || TO " + toIndex + ": " + copyOfInventory.get(toIndex) + " <- BEFORE";
-            logging += log + "\n";
-            System.out.println(log);
+        StringBuilder msg = new StringBuilder();
+        for (Map.Entry<Integer, List<Character>> entry : inventory.entrySet()) {
+            msg.append(entry.getValue().get(entry.getValue().size() - 1));
+        }
+        logger.info("Day 6, Part 1 - Move crates one by one final result: " + msg);
+
+        // part 2
+        for (int i = lastLineIndex + 2; i < lines.size(); i++) {
+            List<String> line = List.of(lines.get(i).split(" "));
+            int amount = Integer.parseInt(line.get(1));
+            int fromIndex = Integer.parseInt(line.get(3));
+            int toIndex = Integer.parseInt(line.get(5));
+            List<Character> fromList = SerializationUtils.clone(new ArrayList<>(copyOfInventory.get(fromIndex)));
             List<Character> subList = fromList.subList(fromList.size() - amount, fromList.size());
             for (Character c : subList) {
                 copyOfInventory.get(toIndex).add(c);
             }
-            for (Character c : subList) {
-                copyOfInventory.get(fromIndex).remove(c);
-            }
-            log = line + " - FROM " + fromIndex + ": " + copyOfInventory.get(fromIndex) + " || TO " + toIndex + ": " + copyOfInventory.get(toIndex) + " <- AFTER\n";
-            logging += log + "\n";
-            System.out.println(log);
-
-            if (amount > fromList.size())  {
-                System.out.println(line + " - " + copyOfInventory + " FAILED. TOTAL FAILED TIME: " + failCount + "\n");
-                failCount++;
-            }
+            subList.forEach(s -> {copyOfInventory.get(fromIndex).remove(copyOfInventory.get(fromIndex).size() - 1);});
         }
 
-        log = "Failed " + failCount + " times\n";
-        logging += log + "\n";
-        logger.info(log);
-        log = "Final inventory " + copyOfInventory;
-        logger.info(log);
-        StringBuilder msg = new StringBuilder();
-        finalInventory = "";
+        msg.setLength(0);
         for (Map.Entry<Integer, List<Character>> entry : copyOfInventory.entrySet()) {
-            finalInventory += "\t" + entry.getKey() + ": " + entry.getValue() + "\n";
             msg.append(entry.getValue().get(entry.getValue().size() - 1));
         }
-        log = "Final inventory: {\n" + finalInventory + "}\n";
-        logging += log + "\n";
-        log = "Final message: " + msg;
-        logging += log + "\n";
-        logger.info("Final message: " + msg + "\n");
-        log = "\nRuntime: " + (float) (System.nanoTime() - startTime) / 1000000000;
-        logging += log + "\n";
-        FileWriter myWriter = new FileWriter("day5_logs.txt");
-        myWriter.write("");
-        myWriter.write(logging);
-        myWriter.close();
-        System.out.println("\nRuntime: " + (float) (System.nanoTime() - startTime)/1000000000);
+
+        logger.info("Day 6, Part 2 - Move crates in groups final result: " + msg);
+        logger.info("\nRuntime: " + (float) (System.nanoTime() - startTime) / 1000000000);
     }
 
-//    public static void main(String[] args) throws IOException {
-//        DayFive dayFive = new DayFive();
-//        dayFive.parseCrates();
-//    }
+    public static void main(String[] args) throws IOException {
+        DayFive dayFive = new DayFive();
+        dayFive.moveItMoveIt();
+    }
 }

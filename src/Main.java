@@ -14,7 +14,7 @@ public class Main {
         DayFour dayFour = new DayFour();
         dayFour.overlapsMoreLikeUwulaps();
 
-        DayFive dayFive = new DayFive();
-        dayFive.parseCrates();
+        DayFive iLikeTo = new DayFive();
+        iLikeTo.moveItMoveIt();
     }
 }
